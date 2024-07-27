@@ -12,12 +12,15 @@ export class UserRepository {
 
   async findAll(): Promise<User[]> {
     // SELECT * FROM users;
-    return await this.userRepository.find();
+    return await this.userRepository.find({ relations: ['address'] });
   }
 
   async findById(id: string): Promise<User | null> {
     // SELECT * FROM users WHERE id = ?;
-    return this.userRepository.findOne({ where: { id } });
+    return this.userRepository.findOne({
+      where: { id },
+      relations: ['address'],
+    });
   }
 
   async save(user: User): Promise<User> {

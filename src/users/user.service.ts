@@ -32,6 +32,7 @@ export class UserService {
     }
 
     const user = new User(name, email, password, cpf);
+    user.address = address;
     this.users.push(user);
     return await this.userRepository.save(user);
   }

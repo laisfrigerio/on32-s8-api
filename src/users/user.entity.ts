@@ -1,4 +1,10 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToOne,
+  JoinColumn,
+} from 'typeorm';
 import { Address } from 'src/address/address.entity';
 
 @Entity('users')
@@ -18,6 +24,11 @@ export class User {
   @Column({ unique: true })
   public cpf: string;
 
+  @OneToOne(() => Address, {
+    nullable: true,
+    cascade: true,
+  })
+  @JoinColumn()
   public address: Address;
 
   constructor(
