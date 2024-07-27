@@ -28,7 +28,6 @@ export class UserService {
 
     if (zipCode) {
       address = await ViaCepService.getAddress(zipCode);
-      console.log(address);
     }
 
     const user = new User(name, email, password, cpf);
