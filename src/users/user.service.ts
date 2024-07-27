@@ -3,10 +3,13 @@ import { Address } from 'src/address/address.entity';
 import { User } from './user.entity';
 import { UserValidator } from './user.validator';
 import { ViaCepService } from '../third-party/via-cep/via-cep.service';
+import { UserRepository } from './user.repository';
 
 @Injectable()
 export class UserService {
   private users: User[] = [];
+
+  constructor(private readonly userRepository: UserRepository) {}
 
   async createUser(
     name: string,

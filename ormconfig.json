@@ -6,7 +6,8 @@
     "password": "Users123",
     "database": "users",
     "entities": [
-        "src/domain/models/**/*.ts"
+        "src/address/address.entity.ts",
+        "src/users/user.entity.ts"
     ],
     "synchronize": true
 }
