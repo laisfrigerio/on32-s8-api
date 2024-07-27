@@ -15,6 +15,11 @@ export class UserRepository {
     return await this.userRepository.find();
   }
 
+  async findById(id: string): Promise<User | null> {
+    // SELECT * FROM users WHERE id = ?;
+    return this.userRepository.findOne({ where: { id } });
+  }
+
   async save(user: User): Promise<User> {
     // INSERT INTO users (name, email, password, cpf) VALUES (?, ?, ?, ?);
     return await this.userRepository.save(user);

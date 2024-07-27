@@ -9,7 +9,7 @@ import { User } from './users/user.entity';
       type: 'postgres',
       host: 'localhost',
       port: 5432,
-      database: 'users-api',
+      database: 'users',
       username: 'lais',
       password: 'Users123',
       entities: [User],

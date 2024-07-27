@@ -44,8 +44,8 @@ export class UserController {
   }
 
   @Get()
-  listUsers() {
-    return this.userService.listUsers();
+  async listUsers() {
+    return await this.userService.listUsers();
   }
 
   @Put(':id')

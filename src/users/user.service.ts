@@ -28,51 +28,47 @@ export class UserService {
 
     if (zipCode) {
       address = await ViaCepService.getAddress(zipCode);
+      console.log(address);
     }
 
-    const user = new User(
-      name,
-      email,
-      password,
-      cpf,
-      `${this.users.length + 1}`,
-      address,
-    );
+    const user = new User(name, email, password, cpf);
     this.users.push(user);
-    return user;
+    return await this.userRepository.save(user);
   }
 
-  updateUser(
+  async updateUser(
     id: string,
     name: string,
     email: string,
     password: string,
     cpf: string,
-  ): User {
+  ): Promise<User | null> {
     UserValidator.verifyEmail(email);
     UserValidator.verifyPassword(password);
     UserValidator.checkEmailAlreadyInUse(this.users, email);
     UserValidator.checkCpfAlreadyInUse(this.users, cpf);
     UserValidator.verifyCpf(cpf);
 
-    const user = this.users.find((user) => user.id === id);
+    const user = await this.getUserById(id);
 
     if (user) {
       user.name = name;
       user.email = email;
       user.password = password;
       user.cpf = cpf;
+
+      return await this.userRepository.save(user);
     }
 
-    return user;
+    return null;
   }
 
   deleteUser(id: string): void {
     this.users = this.users.filter((user) => user.id !== id);
   }
 
-  getUserById(id: string): User {
-    const user = this.users.find((user) => user.id === id);
+  async getUserById(id: string): Promise<User> {
+    const user = await this.userRepository.findById(id);
 
     if (!user) {
       throw new Error('User not found');
@@ -81,7 +77,7 @@ export class UserService {
     return user;
   }
 
-  listUsers(): User[] {
-    return this.users;
+  async listUsers(): Promise<User[]> {
+    return await this.userRepository.findAll();
   }
 }

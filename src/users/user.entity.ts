@@ -26,13 +26,14 @@ export class User {
     password: string,
     cpf: string,
     id?: string,
-    address?: Address,
   ) {
     this.name = name;
     this.email = email;
     this.password = password;
     this.cpf = cpf;
-    this.id = id;
-    this.address = address;
+
+    if (!id) {
+      this.id = id;
+    }
   }
 }
