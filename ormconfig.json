@@ -1,0 +1,12 @@
+{
+    "type": "postgres",
+    "host": "localhost",
+    "port": 5432,
+    "username": "lais",
+    "password": "Users123",
+    "database": "users",
+    "entities": [
+        "src/domain/models/**/*.ts"
+    ],
+    "synchronize": true
+}

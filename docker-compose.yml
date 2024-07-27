@@ -1,0 +1,33 @@
+services:
+  api:
+    build: .
+    container_name: on32-s8-user-api
+    command: npm run start
+    depends_on:
+      - postgresdb
+    ports: 
+      - 3000:3000
+    volumes:
+      - .:/usr/src/app
+
+  postgresdb:
+    container_name: on32-s8-user-api-db
+    env_file: ./.env
+    environment:
+      POSTGRES_PASSWORD: ${DATABASE_PASS}
+      POSTGRES_DB: ${DATABASE_NAME}
+      POSTGRES_USER: ${DATABASE_USER}
+    expose:
+      - 5432
+    image: postgres:latest
+    ports:
+      - 5432:5432
+    restart: always
+    volumes: 
+      - db-config:/etc/postgresql
+      - db-data:/var/lib/postgresql/data
+      - ./db/backup/files/:/data_backup/
+
+volumes: 
+  db-config:
+  db-data:
