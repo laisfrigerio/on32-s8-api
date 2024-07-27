@@ -24,4 +24,9 @@ export class UserRepository {
     // INSERT INTO users (name, email, password, cpf) VALUES (?, ?, ?, ?);
     return await this.userRepository.save(user);
   }
+
+  async delete(id: string): Promise<boolean> {
+    const result = await this.userRepository.delete(id);
+    return result.affected > 0;
+  }
 }

@@ -63,8 +63,8 @@ export class UserService {
     return null;
   }
 
-  deleteUser(id: string): void {
-    this.users = this.users.filter((user) => user.id !== id);
+  async deleteUser(id: string): Promise<boolean> {
+    return await this.userRepository.delete(id);
   }
 
   async getUserById(id: string): Promise<User> {
