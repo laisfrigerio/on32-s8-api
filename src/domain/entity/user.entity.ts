@@ -4,8 +4,10 @@ import {
   PrimaryGeneratedColumn,
   OneToOne,
   JoinColumn,
+  OneToMany,
 } from 'typeorm';
 import { Address } from './address.entity';
+import { Image } from './image.entity';
 
 @Entity('users')
 export class User {
@@ -28,8 +30,12 @@ export class User {
     nullable: true,
     cascade: true,
   })
-  @JoinColumn()
+  @JoinColumn({ name: 'address_id' })
   public address: Address;
+
+  @OneToMany(() => Image, (image) => image.user)
+  @JoinColumn()
+  public images?: Image[];
 
   constructor(
     name: string,

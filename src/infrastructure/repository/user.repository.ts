@@ -13,14 +13,14 @@ export class UserRepository implements IUserRepository {
 
   async findAll(): Promise<User[]> {
     // SELECT * FROM users;
-    return await this.userRepository.find({ relations: ['address'] });
+    return await this.userRepository.find({ relations: ['address', 'images'] });
   }
 
   async findById(id: string): Promise<User | null> {
     // SELECT * FROM users WHERE id = ?;
     return this.userRepository.findOne({
       where: { id },
-      relations: ['address'],
+      relations: ['address', 'images'],
     });
   }
 
