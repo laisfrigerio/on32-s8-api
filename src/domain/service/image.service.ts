@@ -15,7 +15,7 @@ export class ImageService {
     return await this.imageRepository.save(image);
   }
 
-  async deleteUser(id: string): Promise<boolean> {
+  async deleteImage(id: string): Promise<boolean> {
     return await this.imageRepository.delete(id);
   }
 

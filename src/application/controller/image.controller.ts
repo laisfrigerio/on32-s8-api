@@ -20,7 +20,7 @@ export class ImageController {
   ) {}
 
   @Post()
-  async createUser(
+  async createImage(
     @Body()
     createImageDto: CreateImageDto,
   ) {
@@ -46,7 +46,7 @@ export class ImageController {
   }
 
   @Delete(':id')
-  deleteUser(@Param('id') id: string) {
-    return this.imageService.deleteUser(id);
+  deleteImage(@Param('id') id: string) {
+    return this.imageService.deleteImage(id);
   }
 }
