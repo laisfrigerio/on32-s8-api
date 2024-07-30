@@ -1,8 +1,11 @@
 import { Module } from '@nestjs/common';
-import { UserModule } from './users/user.module';
+// import { UserModule } from './users/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Address } from './address/address.entity';
-import { User } from './users/user.entity';
+import { Address } from './domain/entity/address.entity';
+import { User } from './domain/entity/user.entity';
+import { ApplicationModule } from './application/application.module';
+import { DomainModule } from './domain/domain.module';
+import { InfrastructureModule } from './infrastructure/infrastructure.module';
 
 @Module({
   imports: [
@@ -16,7 +19,9 @@ import { User } from './users/user.entity';
       entities: [User, Address],
       synchronize: true,
     }),
-    UserModule,
+    ApplicationModule,
+    DomainModule,
+    InfrastructureModule,
   ],
   controllers: [],
   providers: [],

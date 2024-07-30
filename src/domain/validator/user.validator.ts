@@ -1,4 +1,4 @@
-import { User } from './user.entity';
+import { User } from '../entity/user.entity';
 
 export class UserValidator {
   public static ERROR_EMAIL_INVALID = 'Invalid email';

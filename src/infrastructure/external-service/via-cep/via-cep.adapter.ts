@@ -1,5 +1,5 @@
 import { ViaCEPAddress } from './via-cep.entity';
-import { Address } from '../../address/address.entity';
+import { Address } from '../../../domain/entity/address.entity';
 
 export class ViaCepadapter {
   static convertViaCEPAddress(address: ViaCEPAddress): Address {

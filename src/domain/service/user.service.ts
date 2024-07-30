@@ -1,15 +1,18 @@
-import { Injectable } from '@nestjs/common';
-import { Address } from 'src/address/address.entity';
-import { User } from './user.entity';
-import { UserValidator } from './user.validator';
-import { ViaCepService } from '../third-party/via-cep/via-cep.service';
-import { UserRepository } from './user.repository';
+import { Injectable, Inject } from '@nestjs/common';
+import { Address } from '../entity/address.entity';
+import { User } from '../entity/user.entity';
+import { UserValidator } from '../validator/user.validator';
+import { ViaCepService } from '../../infrastructure/external-service/via-cep/via-cep.service';
+import { IUserRepository } from '../interface/user.interface';
 
 @Injectable()
 export class UserService {
   private users: User[] = [];
 
-  constructor(private readonly userRepository: UserRepository) {}
+  constructor(
+    @Inject('IUserRepository')
+    private readonly userRepository: IUserRepository,
+  ) {}
 
   async createUser(
     name: string,

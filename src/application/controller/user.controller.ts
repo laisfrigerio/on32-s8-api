@@ -9,8 +9,8 @@ import {
   BadRequestException,
   NotFoundException,
 } from '@nestjs/common';
-import { UserService } from './user.service';
-import { CreateUserDto, UpdateUserDto } from './user.dto';
+import { UserService } from '../../domain/service/user.service';
+import { CreateUserDto, UpdateUserDto } from '../dto/user.dto';
 
 @Controller('users')
 export class UserController {
